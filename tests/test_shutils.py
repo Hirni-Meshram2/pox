@@ -38,12 +38,12 @@ def test_shutils():
     print(rootdir())
     assert homedir().startswith(rootdir())
 
-    print('testing sep...')
-    print(sep())
-    print(sep('ext'))
-    print(sep('foo'))
+    #print('testing sep...')
+    #print(sep())
+    #print(sep('ext'))
+    #print(sep('foo'))
 
-    print('testing mkdir...')
+    #print('testing mkdir...')
     newdir = sep().join(['xxxtest','testxxx'])
     assert mkdir(newdir).rstrip(sep()).endswith(newdir)
    #print('cleaning up...')
