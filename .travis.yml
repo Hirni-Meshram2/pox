@@ -5,30 +5,28 @@ matrix:
     include:
         - python: '3.6'
           env:
-         #   - COVERAGE="true"
+            - COVERAGE="true"
         - python: '3.6'
           arch: arm64
           env:
-          #  - COVERAGE="true"        
+            - COVERAGE="true"        
 cache:
     pip: true
 
 before_install:
     - set -e  # fail on any error
-    - pip install tox
     - if [[ $COVERAGE == "true" ]]; then pip install coverage; fi
 
 install:
     - python setup.py build && python setup.py install
 
 script:
-    - for test in tests/__init__.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test; else python $test; fi ; done
-    - for test in tests/test_*.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test ; else python $test; fi ; done
-    - python3 tests/test_shutils.py
-    - tox -e py36
+    #- for test in tests/__init__.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test; else python $test; fi ; done
+    #- for test in tests/test_*.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test ; else python $test; fi ; done
+    
+    - for test in tests/__init__.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test > /dev/null; else python $test > /dev/null; fi ; done
+    - for test in tests/test_*.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test > /dev/null; else python $test > /dev/null; fi ; done
     - pytest
-   # - for test in tests/__init__.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test > /dev/null; else python $test > /dev/null; fi ; done
-   # - for test in tests/test_*.py; do echo $test ; if [[ $COVERAGE == "true" ]]; then coverage run -a $test > /dev/null; else python $test > /dev/null; fi ; done
 
 after_success:
     - if [[ $COVERAGE == "true" ]]; then bash <(curl -s https://codecov.io/bash); else echo ''; fi
