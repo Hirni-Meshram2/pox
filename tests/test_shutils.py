@@ -27,24 +27,23 @@ def test_shutils():
         else:
             print("Warning: could not determine shell type")
             assert shell is None
-
-   print('testing username...')
-   print(username())
-
-   print('testing homedir...')
-   print(homedir())
+        
+    print('testing username...')
+    print(username())
+    print('testing homedir...')
+    print(homedir())
     assert homedir().rstrip(sep()).endswith(username())
 
-   print('testing rootdir...')
-   print(rootdir())
+    print('testing rootdir...')
+    print(rootdir())
     assert homedir().startswith(rootdir())
 
-   print('testing sep...')
-   print(sep())
-   print(sep('ext'))
-   print(sep('foo'))
+    print('testing sep...')
+    print(sep())
+    print(sep('ext'))
+    print(sep('foo'))
 
-   print('testing mkdir...')
+    print('testing mkdir...')
     newdir = sep().join(['xxxtest','testxxx'])
     assert mkdir(newdir).rstrip(sep()).endswith(newdir)
    #print('cleaning up...')
