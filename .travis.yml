@@ -15,10 +15,10 @@ cache:
 
 before_install:
     - set -e  # fail on any error
+    - pip install tox
     - if [[ $COVERAGE == "true" ]]; then pip install coverage; fi
 
 install:
-    - apt-get install tox
     - python setup.py build && python setup.py install
 
 script:
