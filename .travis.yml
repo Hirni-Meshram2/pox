@@ -5,11 +5,11 @@ matrix:
     include:
         - python: '3.6'
           env:
-            - COVERAGE="true"
+         #   - COVERAGE="true"
         - python: '3.6'
           arch: arm64
           env:
-            - COVERAGE="true"        
+          #  - COVERAGE="true"        
 cache:
     pip: true
 
